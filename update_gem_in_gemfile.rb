@@ -5,6 +5,7 @@ require 'open-uri'
 
 class UpdateGemInGemFile 
 
+  VERSION = "0.0.2"
   GEMFILE = "./Gemfile"
   GEMFILE_CHECK = "./Gemfile.check"
 
@@ -32,7 +33,7 @@ class UpdateGemInGemFile
 
   def latest_gem_version(gem_name)
     uri = "https://rubygems.org/api/v1/gems/#{gem_name}.json"
-    json_body = JSON.load(open(uri))
+    json_body = JSON.load(open(uri, "User-Agent" => "update_gem_in_gemfile/#{VERSION} https://github.com/goodylabs/update_gem_in_gemfile"))
     return json_body['version']
   end
 
